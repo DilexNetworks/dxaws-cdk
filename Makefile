@@ -87,8 +87,7 @@ release:
 	@echo "Pushing changes..."
 	git push --follow-tags
 
-	# Refresh Git state to ensure we get the new tag
-	NEW_TAG := $(shell git describe --tags --abbrev=0)
-
 	@echo "Creating GitHub release..."
-	gh release create $(NEW_TAG) -t "Release version $(NEW_TAG)" -n "Release for version $(NEW_TAG)"
+	gh release create v$(shell $(VENV_DIR)/bin/bump2version show | grep new_version | cut -d ' ' -f 3) \
+                      		-t "Release version {new_version}" \
+                      		-n "Automated release for version {new_version}"
