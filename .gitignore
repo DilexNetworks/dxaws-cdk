@@ -9,3 +9,7 @@ cdk.out
 
 # Python
 .venv/
+
+# The intention will be to install this package through
+# npm and, as such, we will not include package-lock.json
+package-lock.json
