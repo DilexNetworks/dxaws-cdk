@@ -5,3 +5,6 @@ livereload
 myst_parser
 sphinx>=3.2.1
 sphinxcontrib-mermaid
+
+# for tracking releases
+bump2version>=1.0.1

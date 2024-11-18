@@ -70,3 +70,13 @@ venv:
 check-python:
 	@command -v $(PYTHON_VERSION) >/dev/null 2>&1 || { echo >&2 "$(PYTHON_VERSION) is not installed. Please install Python3 to continue."; exit 1; }
 
+# Release: Update version, tag, and push
+release:
+	@if [ -z "$(filter patch minor major,$(TARGET))" ]; then \
+		echo "Usage: make release TARGET=[patch|minor|major]"; \
+		exit 1; \
+	fi
+	@echo "Bumping version ($(TARGET))..."
+	$(VENV_DIR)/bin/bump2version $(TARGET)
+	@echo "Pushing changes..."
+	git push --follow-tags

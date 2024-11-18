@@ -13,3 +13,6 @@ cdk.out
 # The intention will be to install this package through
 # npm and, as such, we will not include package-lock.json
 package-lock.json
+
+# Ignore JetBrains IDE settings
+.idea/
