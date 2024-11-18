@@ -77,6 +77,6 @@ release:
 		exit 1; \
 	fi
 	@echo "Bumping version ($(TARGET))..."
-	$(VENV_DIR)/bin/bump2version $(TARGET)
+	$(VENV_DIR)/bin/bump2version $(TARGET) --tag-message "Release version {new_version}"
 	@echo "Pushing changes..."
 	git push --follow-tags
