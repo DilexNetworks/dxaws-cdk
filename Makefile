@@ -82,8 +82,8 @@ release:
  	fi
 
 	@echo "Bumping version ($(TARGET))..."
-	NEW_VERSION=$(shell $(VENV_DIR)/bin/bump2version $(TARGET) --tag-message "Release version {new_version}" --list | grep new_version= | cut -d '=' -f 2 ); \
-    echo "Bumped to version $(NEW_VERSION)";
+	@NEW_VERSION=$$($(VENV_DIR)/bin/bump2version $(TARGET) --tag-message "Release version {new_version}" --list | grep new_version= | cut -d '=' -f 2 ); \
+    echo "Bumped to version $$NEW_VERSION";
 
 #	@echo "Pushing changes..."
 #	git push --follow-tags
