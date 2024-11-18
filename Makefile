@@ -88,4 +88,4 @@ release:
 	git push --follow-tags
 
 	@echo "Creating GitHub release..."
-gh release create $(shell git describe --tags --abbrev=0) -t "Release version $(shell git describe --tags --abbrev=0)" -n "Automated release for version $(shell git describe --tags --abbrev=0)"
+	gh release create $(shell git describe --tags --abbrev=0) -t "Release version $(shell git describe --tags --abbrev=0)" -n "Automated release for version $(shell git describe --tags --abbrev=0)"
