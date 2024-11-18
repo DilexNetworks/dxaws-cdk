@@ -88,7 +88,7 @@ release:
 	git push --follow-tags
 
 	# Refresh Git state to ensure we get the new tag
-    NEW_TAG := $(shell git describe --tags --abbrev=0)
+	NEW_TAG := $(shell git describe --tags --abbrev=0)
 
 	@echo "Creating GitHub release..."
 	gh release create $(NEW_TAG) -t "Release version $(NEW_TAG)" -n "Release for version $(NEW_TAG)"
