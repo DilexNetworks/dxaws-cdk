@@ -1,0 +1,10 @@
+{
+  "entryPoints": ["../lib/index.ts"],  
+  "out": "typedoc",                   
+  "plugin": ["typedoc-plugin-markdown"], 
+  "excludePrivate": true,            
+  "hideBreadcrumbs": true,        
+  "hideGenerator": true,         
+  "readme": "../README.md",             
+  "includeVersion": true       
+}
