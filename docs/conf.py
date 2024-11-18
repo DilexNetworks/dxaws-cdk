@@ -27,10 +27,10 @@ copyright = '2024, Dilex Networks'
 author = 'Andrew Wyllie'
 
 # The full version, including alpha/beta/rc tags
-release = 'v1.0.16'
+release = 'v1.0.17'
 
 # Set the title
-html_title = "DxAws CDK Components v1.0.16"
+html_title = "DxAws CDK Components v1.0.17"
 
 
 # -- General configuration ---------------------------------------------------
