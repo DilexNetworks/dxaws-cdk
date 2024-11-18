@@ -82,11 +82,11 @@ release:
  	fi
 
 	@echo "Bumping version ($(TARGET))..."
-	NEW_VERSION=$$( $(VENV_DIR)/bin/bump2version $(TARGET) --tag-message "Release version {new_version}" --list | grep bew_version= | cut  -d '=' -f 2 ); \
-	echo "Bumped to version $$NEW_VERSION";
+	NEW_VERSION=$$( $(VENV_DIR)/bin/bump2version $(TARGET) --tag-message "Release version {new_version}" --list | grep new_version= | cut -d '=' -f 2 ); \
+    echo "Bumped to version $$NEW_VERSION";
 
 	@echo "Pushing changes..."
 	git push --follow-tags
 
-	@echo "Creating GitHub release..."
+	echo "Creating GitHub release..."
 	gh release create v$$NEW_VERSION -t "Release version $$NEW_VERSION" -n "Automated release for version $$NEW_VERSION"
