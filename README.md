@@ -1,4 +1,4 @@
-# DxAws CDK Component Library v1.0.8
+# DxAws CDK Component Library v1.0.9
 
 You should explore the contents of this project. It demonstrates a CDK Construct Library that includes a construct (`DxawsCdk`)
 which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
