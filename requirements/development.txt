@@ -1,0 +1,7 @@
+
+# for documentation
+furo
+livereload
+myst_parser
+sphinx>=3.2.1
+sphinxcontrib-mermaid
