@@ -76,7 +76,16 @@ release:
 		echo "Usage: make release TARGET=[patch|minor|major]"; \
 		exit 1; \
 	fi
+	@if ! command -v gh >/dev/null; then \
+ 		echo "GitHub CLI (gh) is not installed. Please install it first."; \
+ 		exit 1; \
+ 	fi
+
 	@echo "Bumping version ($(TARGET))..."
 	$(VENV_DIR)/bin/bump2version $(TARGET) --tag-message "Release version {new_version}"
+
 	@echo "Pushing changes..."
 	git push --follow-tags
+
+	@echo "Creating GitHub release..."
+gh release create $(shell git describe --tags --abbrev=0) -t "Release version $(shell git describe --tags --abbrev=0)" -n "Automated release for version $(shell git describe --tags --abbrev=0)"
