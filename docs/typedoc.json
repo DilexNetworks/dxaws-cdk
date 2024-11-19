@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["../lib/index.ts"],  
+  "entryPoints": ["../lib/**/*.ts"],
   "out": "typedoc",                   
   "plugin": ["typedoc-plugin-markdown"], 
   "excludePrivate": true,            

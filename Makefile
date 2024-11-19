@@ -22,11 +22,17 @@ init-all: check-python venv init
 	$(MAKE) test
 
 # Clean up build artifacts
-clean:
+clean: clean-docs
 	@echo "Cleaning up build artifacts..."
-	rm -rf $(BUILD_DIR) $(DOCS_DIR)/typedoc $(DOCS_DIR)/build $(VENV_DIR)
+	rm -rf $(BUILD_DIR) $(VENV_DIR)
 	find . -name "*.pyc" -delete
 	find . -name "__pycache__" -delete
+
+# Clean the documentation output directory
+clean-docs:
+	@echo "Cleaning documentation output directory..."
+	rm -rf $(DOCS_DIR)/build
+	rm -rf $(DOCS_DIR)/typedoc
 
 # Remove everything (full reset)
 dist: clean
@@ -44,7 +50,7 @@ build:
 	npm run build
 
 # Generate documentation
-docs: docs/typedoc
+docs: clean-docs docs/typedoc
 	@echo "Building Sphinx documentation..."
 	$(VENV_DIR)/bin/sphinx-build -b html $(DOCS_DIR) $(DOCS_DIR)/build
 
@@ -54,7 +60,7 @@ docs/typedoc:
 	npx typedoc --options docs/typedoc.json
 
 # Preview the documentation
-serve-docs:
+serve-docs: docs
 	@echo "Starting local server for documentation..."
 	$(PYTHON_VERSION) -m http.server --directory $(DOCS_DIR)/build
 
