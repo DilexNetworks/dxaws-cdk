@@ -3,6 +3,10 @@
 *.d.ts
 node_modules
 
+# The context directory somntains information that is
+# specific to our environment that should not go in GitHub
+context/
+
 # CDK asset staging directory
 .cdk.staging
 cdk.out

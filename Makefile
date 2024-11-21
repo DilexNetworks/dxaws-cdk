@@ -35,7 +35,7 @@ clean-docs:
 	rm -rf $(DOCS_DIR)/typedoc
 
 # Remove everything (full reset)
-dist: clean
+distclean: clean
 	@echo "Removing all installed dependencies and virtual environment..."
 	rm -rf $(VENV_DIR) node_modules $(DOCS_DIR)/typedoc package-lock.json
 
