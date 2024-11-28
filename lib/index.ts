@@ -1,11 +1,28 @@
-// import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
 
-export interface DxawsCdkProps {
-  // Define construct properties here
-}
+// Export constructs and props for the DxDns module
+export { CloudFrontStack } from './CloudFront/cloudfront';
+export interface CloudFrontStackProps {}
 
+// Export constructs and props for the DxDns module
+export { DxDns } from './Route53/dx-dns';
+export interface DxDnsProps {}
+
+// Export constructs and props for the DxBucket module
+export { DxBucket } from './S3/dx-bucket';
+export { BucketProfile } from './S3/dx-bucket';
+export interface DxBucketProps {}
+
+// Export constructs and props for the SslCert module
+export { SslCertStack } from './ACM/ssl_cert'
+export interface SslCertStackProps {}
+
+// Export constructs and props for the RootDelegationRole module
+export { RootDelegationRoleStack } from './Route53/dns-root-account';
+export interface RootDelegationRoleStackPropsRole {}
+
+
+/*
 export class DxawsCdk extends Construct {
 
   constructor(scope: Construct, id: string, props: DxawsCdkProps = {}) {
@@ -19,3 +36,5 @@ export class DxawsCdk extends Construct {
     // });
   }
 }
+*/
+

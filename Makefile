@@ -35,7 +35,7 @@ clean-docs:
 	rm -rf $(DOCS_DIR)/typedoc
 
 # Remove everything (full reset)
-dist: clean
+distclean: clean
 	@echo "Removing all installed dependencies and virtual environment..."
 	rm -rf $(VENV_DIR) node_modules $(DOCS_DIR)/typedoc package-lock.json
 
@@ -47,7 +47,7 @@ test:
 # Build the project
 build:
 	@echo "Building the project..."
-	npm run build
+	npx tsc --project tsconfig.build.json
 
 # Generate documentation
 docs: clean-docs docs/typedoc
