@@ -47,7 +47,7 @@ test:
 # Build the project
 build:
 	@echo "Building the project..."
-	npm run build
+	npx tsc --project tsconfig.build.json
 
 # Generate documentation
 docs: clean-docs docs/typedoc

@@ -1,13 +1,18 @@
 {
   "name": "dxaws-cdk",
   "version": "1.0.17",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepare": "npm run build",
     "watch": "tsc -w",
     "test": "jest --config ./test/jest.config.js"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/node": "22.5.4",

@@ -5,11 +5,12 @@ export { CloudFrontStack } from './CloudFront/cloudfront';
 export interface CloudFrontStackProps {}
 
 // Export constructs and props for the DxDns module
-export { DxDnsStack } from './Route53/dx-dns';
-export interface DxawsCdkProps {}
+export { DxDns } from './Route53/dx-dns';
+export interface DxDnsProps {}
 
 // Export constructs and props for the DxBucket module
 export { DxBucket } from './S3/dx-bucket';
+export { BucketProfile } from './S3/dx-bucket';
 export interface DxBucketProps {}
 
 // Export constructs and props for the SslCert module

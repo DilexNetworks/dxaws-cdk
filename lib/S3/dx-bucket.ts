@@ -1,8 +1,8 @@
 import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
 import * as s3 from 'aws-cdk-lib/aws-s3';
+import { Construct } from 'constructs';
 
-export interface DxBucketProps {
+interface DxBucketProps extends cdk.StackProps {
     /**
      * The profile determines the configuration of the bucket
      * Predefined profiles:
@@ -75,6 +75,7 @@ const PROFILE_SETTINGS: Record<BucketProfile, Partial<s3.BucketProps>> = {
     },
 }
 
+//export class DxBucket extends Construct {
 export class DxBucket extends Construct {
     public readonly bucket: s3.Bucket;
 
@@ -102,6 +103,7 @@ export class DxBucket extends Construct {
         // Create the bucket
         this.bucket = new s3.Bucket(this, 'DxBucket', bucketProps);
 
+
         // Create an output for the bucket name
         new cdk.CfnOutput(this, 'BucketNameOutput', {
             value: this.bucket.bucketName,
@@ -115,5 +117,13 @@ export class DxBucket extends Construct {
             description: 'The ARN of the S3 bucket',
             exportName: `${id}-BucketArn`, // Optional
         });
+    }
+
+    public get bucketName(): string {
+        return this.bucket.bucketName;
+    }
+
+    public get bucketArn(): string {
+        return this.bucket.bucketArn;
     }
 }
