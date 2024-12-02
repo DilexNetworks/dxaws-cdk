@@ -14,7 +14,7 @@ export { BucketProfile } from './S3/dx-bucket';
 export interface DxBucketProps {}
 
 // Export constructs and props for the SslCert module
-export { SslCertStack } from './ACM/ssl_cert'
+export { DxCertificate } from './ACM/ssl_cert'
 export interface SslCertStackProps {}
 
 // Export constructs and props for the RootDelegationRole module
