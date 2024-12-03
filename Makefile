@@ -48,6 +48,9 @@ test:
 build:
 	@echo "Building the project..."
 	npx tsc --project tsconfig.build.json
+
+link: build
+	@echo "Add a link for local development"
 	npm link
 
 # Generate documentation
