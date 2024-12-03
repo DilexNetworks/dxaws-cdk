@@ -4,7 +4,10 @@
     "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": false,
-    "outDir": "dist"
+    "outDir": "dist",
+    "plugins": [
+      { "transform": "typescript-transform-paths" }
+    ]
   },
   "exclude": ["**/*.test.ts", "dist", "node_modules"]
 }

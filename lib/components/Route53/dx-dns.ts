@@ -4,6 +4,7 @@ import * as iam from 'aws-cdk-lib/aws-iam';
 import * as cr from 'aws-cdk-lib/custom-resources';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { Construct } from "constructs";
+import { LAMBDA } from '@constants/lambda';
 
 interface DxDnsProps extends cdk.StackProps {
     subDomainName: string; // e.g., "dev.example.com"
@@ -26,15 +27,6 @@ export class DxDns extends Construct {
         this.hostedZoneId = props.hostedZoneId;
     }
 
-    /*
-    public createSubdomainHostedZone(): void {
-        this.subDomainHostedZone = new route53.PublicHostedZone(this, 'SubDomainHostedZone', {
-            zoneName: this.subDomainName,
-        });
-        this.subDomainHostedZone.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);
-    }
-
-     */
     public createSubdomainHostedZone(): void {
         this.subDomainHostedZone = new route53.PublicHostedZone(this, 'SubDomainHostedZone', {
             zoneName: this.subDomainName,
@@ -44,7 +36,7 @@ export class DxDns extends Construct {
         // Create a custom resource to clean up records
         const cleanupProvider = new cr.Provider(this, 'CleanupProvider', {
             onEventHandler: new lambda.Function(this, 'CleanupFunction', {
-                runtime: lambda.Runtime.NODEJS_18_X,
+                runtime: LAMBDA.RUNTIME.NODEJS,
                 handler: 'index.handler',
                 code: lambda.Code.fromInline(`
                 const { Route53Client, ListResourceRecordSetsCommand, ChangeResourceRecordSetsCommand } = require('@aws-sdk/client-route-53');
