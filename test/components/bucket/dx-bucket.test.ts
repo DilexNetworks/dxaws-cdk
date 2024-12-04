@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Template, Match } from 'aws-cdk-lib/assertions';
-import { DxBucket, BucketProfile } from '../lib/S3/dx-bucket';
+import { DxBucket } from '@components/S3';
+import { S3_BUCKET_PROFILES } from "@constants/s3";
 
 describe('DxBucket', () => {
     test('DEV profile creates a versioned bucket with auto-delete enabled', () => {
@@ -9,7 +10,7 @@ describe('DxBucket', () => {
 
         // Instantiate the DxBucket construct with the DEV profile
         new DxBucket(stack, 'DevBucket', {
-            profile: BucketProfile.DEV,
+            profile: S3_BUCKET_PROFILES.DEV,
         });
 
         // Get the synthesized CloudFormation template
@@ -32,7 +33,7 @@ describe('DxBucket', () => {
 
         // Instantiate the DxBucket construct with the PROD profile
         new DxBucket(stack, 'ProdBucket', {
-            profile: BucketProfile.PROD,
+            profile: S3_BUCKET_PROFILES.PROD,
         });
 
         // Get the synthesized CloudFormation template
@@ -59,7 +60,7 @@ describe('DxBucket', () => {
 
         // Instantiate the DxBucket construct with overrides
         new DxBucket(stack, 'CustomBucket', {
-            profile: BucketProfile.PROD,
+            profile: S3_BUCKET_PROFILES.PROD,
             overrides: {
                 bucketName: 'custom-bucket-name',
             },

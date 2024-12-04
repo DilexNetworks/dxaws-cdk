@@ -15,6 +15,7 @@ all: clean init test build docs
 init: 
 	@echo "Initializing development environment..."
 	npm install
+	ts-node -r tsconfig-paths/register lib/index.ts
 
 init-all: check-python venv init
 	$(VENV_DIR)/bin/pip install -r requirements/development.txt

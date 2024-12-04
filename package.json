@@ -24,7 +24,7 @@
     "tsconfig-paths": "^3.14.0",
     "typedoc": "^0.27.2",
     "typedoc-plugin-markdown": "^4.2.10",
-    "typescript": "~5.6.2",
+    "typescript": "^5.7.2",
     "typescript-transform-paths": "^3.5.2"
   },
   "peerDependencies": {
