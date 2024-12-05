@@ -1,1 +1,1 @@
-export { DxCertificate } from './ssl_cert'
+export { DxCertificateProps, DxCertificate } from './DxCertificate'

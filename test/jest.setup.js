@@ -1,1 +1,1 @@
-global.console.log = jest.fn(); // Mutes console.log
+// global.console.log = jest.fn(); // Mutes console.log

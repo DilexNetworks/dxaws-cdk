@@ -28,7 +28,7 @@ export class DxBucket extends Construct {
         };
 
         // these are the properties we have for this bucket
-        console.log('Resolved bucket properties:', bucketProps);
+        // console.log('Resolved bucket properties:', bucketProps);
 
         // Create the bucket
         this.bucket = new s3.Bucket(this, 'DxBucket', bucketProps);

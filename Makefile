@@ -48,11 +48,12 @@ test:
 # Build the project
 build:
 	@echo "Building the project..."
-	npx tsc --project tsconfig.build.json
+	npm run build
 
-link: build
-	@echo "Add a link for local development"
-	npm link
+# Build the project and publish in local environment
+dev-build:
+	@echo "Building the project for local development"
+	npm run publish:local
 
 # Generate documentation
 docs: clean-docs docs/typedoc
