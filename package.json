@@ -6,9 +6,9 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json && tsc-alias",
     "clean": "rm -rf dist",
-    "prepare": "npm run build",
+    "prepare-old": "npm test && npm run build",
     "test": "jest --config ./test/jest.config.js",
-    "publish:local": "npm run build && yalc publish --push",
+    "publish:local": "yalc publish --push",
     "watch": "tsc -w & nodemon -w dist -x 'yalc push'",
     "unpublish:local": "yalc remove --all"
   },

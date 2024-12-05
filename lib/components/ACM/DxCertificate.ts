@@ -29,7 +29,7 @@ export class DxCertificate extends Construct {
         const subDomainHostedZone = route53.HostedZone.fromHostedZoneAttributes(
             this, 'SubDomainHostedZone', {
                 zoneName: props.subDomainName,
-                hostedZoneId: props.hostedZoneId  // We'll need to pass this in
+                hostedZoneId: props.hostedZoneId
             }
         );
 
@@ -37,7 +37,6 @@ export class DxCertificate extends Construct {
             domainName: props.subDomainName,
             validation: acm.CertificateValidation.fromDns(subDomainHostedZone),
             subjectAlternativeNames: props.subjectAlternativeNames,
-            // If region is specified, create in that region
             ...(props.region && { region: props.region })
         });
 

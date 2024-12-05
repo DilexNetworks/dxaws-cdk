@@ -51,7 +51,7 @@ build:
 	npm run build
 
 # Build the project and publish in local environment
-dev-build:
+dev-build: test build
 	@echo "Building the project for local development"
 	npm run publish:local
 
