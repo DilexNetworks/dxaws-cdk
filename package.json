@@ -2,7 +2,7 @@
   "name": "dxaws-cdk",
   "version": "1.0.17",
   "main": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && tsc-alias",
     "clean": "rm -rf dist",

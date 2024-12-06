@@ -6,7 +6,7 @@
       "es2020",
       "dom"
     ],
-    "declarationDir": "./dist/types",
+    "declarationDir": "./dist",
     "module": "CommonJS",
     "target": "ES2019",
     "baseUrl": "./lib",

@@ -1,5 +1,5 @@
 // Export constructs and props for the DxDns module
-export { DxCloudFront } from '@components/CloudFront';
+export { DxCloudFront, DxWebsiteLambdaEdge } from '@components/CloudFront';
 export interface CloudFrontStackProps {}
 
 // Export constructs and props for the DxDns module

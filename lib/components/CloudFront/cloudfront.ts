@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib'
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront'
 import * as iam from 'aws-cdk-lib/aws-iam'
+import * as lambda from 'aws-cdk-lib/aws-lambda'
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins'
 import * as s3 from 'aws-cdk-lib/aws-s3'
 import { Construct } from 'constructs'
@@ -10,6 +11,7 @@ export interface DxCloudFrontProps {
     bucket: s3.IBucket;
     defaultRootObject?: string;
     priceClass?: cloudfront.PriceClass;
+    edgeFunction?: lambda.Function;
 }
 
 export class DxCloudFront extends Construct {

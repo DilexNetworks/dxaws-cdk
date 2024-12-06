@@ -1,3 +1,4 @@
+import * as cdk from 'aws-cdk-lib'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
 import { Construct } from 'constructs'
 import { LAMBDA_PROFILE } from '@constants/lambda';
@@ -39,5 +40,9 @@ export class DxWebsiteLambdaEdge extends Construct {
                 }
             `),
         });
+        this.function.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);
+        // also clean up versions
+        const version = this.function.currentVersion;
+        version.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);
     }
 }
