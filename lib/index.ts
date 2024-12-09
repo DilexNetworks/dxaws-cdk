@@ -15,6 +15,9 @@ export interface DxBucketProps {}
 export { DxCertificate } from '@components/ACM'
 export interface SslCertStackProps {}
 
+// Export SSM ParameterStore for DxParameter
+export { DxParameter } from '@components/SSM'
+
 // Export constructs and props for the RootDelegationRole module
 export interface RootDelegationRoleStackPropsRole {}
 
