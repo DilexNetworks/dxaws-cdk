@@ -6,6 +6,7 @@ export enum S3_BUCKET_PROFILES {
     DEV = 'dev',
     PROD = 'prod',
     ARCHIVE = 'archive',
+    LOGGING = 'logging',
 }
 
 // Predefined profile settings for buckets
@@ -26,5 +27,13 @@ export const S3_PROFILES: Record<S3_BUCKET_PROFILES, Partial<s3.BucketProps>> = 
         removalPolicy: cdk.RemovalPolicy.RETAIN,
         autoDeleteObjects: false,
         lifecycleRules: [{ expiration: cdk.Duration.days(365) }],
+    },
+    [S3_BUCKET_PROFILES.LOGGING]: {
+        versioned: false,
+        removalPolicy: cdk.RemovalPolicy.DESTROY,
+        autoDeleteObjects: true,
+        objectOwnership: s3.ObjectOwnership.OBJECT_WRITER,
+        blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+        lifecycleRules: [{ expiration: cdk.Duration.days(30) }], // Example retention
     },
 };

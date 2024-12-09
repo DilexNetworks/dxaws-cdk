@@ -1,5 +1,5 @@
 // Export constructs and props for the DxDns module
-export { DxCloudFront, DxWebsiteLambdaEdge } from '@components/CloudFront';
+export { DxCloudFront, DxWebsiteLambdaEdge, DxAuthLambdaEdge } from '@components/CloudFront';
 export interface CloudFrontStackProps {}
 
 // Export constructs and props for the DxDns module
@@ -16,6 +16,5 @@ export { DxCertificate } from '@components/ACM'
 export interface SslCertStackProps {}
 
 // Export constructs and props for the RootDelegationRole module
-export { RootDelegationRoleStack } from '@components/Route53';
 export interface RootDelegationRoleStackPropsRole {}
 

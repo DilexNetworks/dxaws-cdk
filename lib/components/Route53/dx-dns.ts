@@ -39,7 +39,8 @@ export class DxDns extends Construct {
             target: route53.RecordTarget.fromAlias(
                 new targets.CloudFrontTarget(distribution)
             ),
-            recordName: this.subDomainName
+            recordName: this.subDomainName,
+            ttl: cdk.Duration.minutes(5)
         });
     }
 
@@ -134,6 +135,7 @@ export class DxDns extends Construct {
             delegatedZone: this.subDomainHostedZone,
             parentHostedZoneId: this.hostedZoneId,
             delegationRole: delegationRole,
+            ttl: cdk.Duration.minutes(5),
         });
     }
 

@@ -31,10 +31,4 @@ describe('Module Exports', () => {
         const { DxCertificate } = require('@components/ACM');
         expect(index.DxCertificate).toBe(DxCertificate);
     });
-
-    // Test for RootDelegationRoleStack export
-    it('should export RootDelegationRoleStack from @components/Route53', () => {
-        const { RootDelegationRoleStack } = require('@components/Route53');
-        expect(index.RootDelegationRoleStack).toBe(RootDelegationRoleStack);
-    });
 });

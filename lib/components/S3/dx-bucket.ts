@@ -1,6 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
 import * as s3 from 'aws-cdk-lib/aws-s3';
-import { Stack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { S3_PROFILES, S3_BUCKET_PROFILES } from "@constants/s3";
 
@@ -27,26 +26,9 @@ export class DxBucket extends Construct {
             ...props.overrides || {}, // User-specified properties take precedence
         };
 
-        // these are the properties we have for this bucket
-        // console.log('Resolved bucket properties:', bucketProps);
-
         // Create the bucket
         this.bucket = new s3.Bucket(this, 'DxBucket', bucketProps);
 
-
-        const stackName = Stack.of(this).stackName;
-        new cdk.CfnOutput(this, 'BucketNameOutput', {
-            value: this.bucket.bucketName,
-            description: 'The name of the S3 bucket',
-            exportName: `${stackName}-${id}-BucketName`, // Optional: Makes the output globally exportable
-        });
-
-        // Optionally, output the bucket ARN as well
-        new cdk.CfnOutput(this, 'BucketArnOutput', {
-            value: this.bucket.bucketArn,
-            description: 'The ARN of the S3 bucket',
-            exportName: `${stackName}-${id}-BucketArn`, // Optional
-        });
     }
 
     public get bucketName(): string {
@@ -61,3 +43,19 @@ export class DxBucket extends Construct {
         return this.bucket as s3.IBucket;
     }
 }
+
+/*
+const stackName = Stack.of(this).stackName;
+new cdk.CfnOutput(this, 'BucketNameOutput', {
+    value: this.bucket.bucketName,
+    description: 'The name of the S3 bucket',
+    exportName: `${stackName}-${id}-BucketName`, // Optional: Makes the output globally exportable
+});
+
+// Optionally, output the bucket ARN as well
+new cdk.CfnOutput(this, 'BucketArnOutput', {
+    value: this.bucket.bucketArn,
+    description: 'The ARN of the S3 bucket',
+    exportName: `${stackName}-${id}-BucketArn`, // Optional
+});
+*/
