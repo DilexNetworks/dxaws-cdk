@@ -1,5 +1,6 @@
 *.js
 !jest.config.js
+!jest.setup.js
 *.d.ts
 node_modules
 
@@ -21,5 +22,8 @@ cdk.out
 # npm and, as such, we will not include package-lock.json
 package-lock.json
 
-# Ignore JetBrains IDE settings
+# Ignore JetBrains IDE settings and vim temp files
 .idea/
+*.swp
+
+

@@ -1,9 +1,11 @@
 import * as cdk from 'aws-cdk-lib';
 import * as route53 from 'aws-cdk-lib/aws-route53';
+import * as targets from 'aws-cdk-lib/aws-route53-targets'
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as cr from 'aws-cdk-lib/custom-resources';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { Construct } from "constructs";
+import { IDistribution } from 'aws-cdk-lib/aws-cloudfront';
 import { LAMBDA } from '@constants/lambda';
 
 interface DxDnsProps extends cdk.StackProps {
@@ -25,6 +27,21 @@ export class DxDns extends Construct {
         this.subDomainName = props.subDomainName;
         this.rootAccountId = props.rootAccountId;
         this.hostedZoneId = props.hostedZoneId;
+    }
+
+    public addCloudFrontRecord(distribution: IDistribution): void {
+        if (!this.subDomainHostedZone) {
+            throw new Error('Subdomain hosted zone must be created before adding CloudFront record.');
+        }
+
+        new route53.ARecord(this, 'CloudFrontAlias', {
+            zone: this.subDomainHostedZone,
+            target: route53.RecordTarget.fromAlias(
+                new targets.CloudFrontTarget(distribution)
+            ),
+            recordName: this.subDomainName,
+            ttl: cdk.Duration.minutes(5)
+        });
     }
 
     public createSubdomainHostedZone(): void {
@@ -118,6 +135,7 @@ export class DxDns extends Construct {
             delegatedZone: this.subDomainHostedZone,
             parentHostedZoneId: this.hostedZoneId,
             delegationRole: delegationRole,
+            ttl: cdk.Duration.minutes(5),
         });
     }
 

@@ -16,25 +16,36 @@ export class DxCertificate extends Construct {
     constructor(scope: Construct, id: string, props: DxCertificateProps) {
         super(scope, id);
 
+        // Validate required properties
+        if (!props.subDomainName || props.subDomainName.trim() === '') {
+            throw new Error('The subDomainName property is required and cannot be empty.');
+        }
+
+        if (!props.hostedZoneId || props.hostedZoneId.trim() === '') {
+            throw new Error('The hostedZoneId property is required and cannot be empty.');
+        }
+
         // Import an existing hosted zone
-        const subDomainHostedZone = route53.HostedZone.fromHostedZoneAttributes(this, 'SubDomainHostedZone', {
-            zoneName: props.subDomainName,
-            hostedZoneId: props.hostedZoneId  // We'll need to pass this in
-        });
+        const subDomainHostedZone = route53.HostedZone.fromHostedZoneAttributes(
+            this, 'SubDomainHostedZone', {
+                zoneName: props.subDomainName,
+                hostedZoneId: props.hostedZoneId
+            }
+        );
 
         this.certificate = new acm.Certificate(this, 'Certificate', {
             domainName: props.subDomainName,
             validation: acm.CertificateValidation.fromDns(subDomainHostedZone),
             subjectAlternativeNames: props.subjectAlternativeNames,
-            // If region is specified, create in that region
             ...(props.region && { region: props.region })
         });
 
         // Add outputs
         new cdk.CfnOutput(this, 'CertificateArn', {
             value: this.certificate.certificateArn,
-            description: 'The ARN of the certificate'
-        });
+            description: 'The ARN of the certificate',
+            exportName: 'CertificateArn'
+        }).overrideLogicalId('CertificateArn');
     }
 
     public get certificateArn(): string {
