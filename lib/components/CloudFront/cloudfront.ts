@@ -4,6 +4,7 @@ import * as iam from 'aws-cdk-lib/aws-iam'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins'
 import * as s3 from 'aws-cdk-lib/aws-s3'
+import { ICertificate } from 'aws-cdk-lib/aws-certificatemanager'
 import { S3_PROFILES, S3_BUCKET_PROFILES } from "@constants/s3";
 import { Construct } from 'constructs'
 
@@ -17,13 +18,19 @@ export interface DxCloudFrontProps {
     defaultRootObject?: string;
     priceClass?: cloudfront.PriceClass;
     edgeFunctions?: EdgeFunctionConfig[];
+    domainNames: string[];
+    certificate: ICertificate;
 }
 
 export class DxCloudFront extends Construct {
     public readonly distribution: cloudfront.Distribution;
+    private readonly domainNames: string[];
+    private certificate: ICertificate;
 
     constructor(scope: Construct, id: string, props: DxCloudFrontProps) {
         super(scope, id);
+        this.domainNames = props.domainNames;
+        this.certificate = props.certificate;
 
         const oac = new cloudfront.S3OriginAccessControl(this, 'MyOAC', {
             signing: cloudfront.Signing.SIGV4_NO_OVERRIDE
@@ -43,6 +50,8 @@ export class DxCloudFront extends Construct {
 
         // Create the distribution
         this.distribution = new cloudfront.Distribution(this, 'Distribution', {
+            certificate: this.certificate,
+            domainNames: this.domainNames,
             defaultBehavior: {
                 origin: s3Origin,
                 viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,

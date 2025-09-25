@@ -16,3 +16,13 @@ The construct defines an interface (`DxawsCdkProps`) to configure the visibility
 * `npm run build`   compile typescript to js
 * `npm run watch`   watch for changes and compile
 * `npm run test`    perform the jest unit tests
+
+
+## Dev workflow
+
+If you are using this library with something else, you will need to build and
+share this library everytime you make a change.  The following command helps
+out here a bit:
+```
+make build && npm run publish:local
+```
